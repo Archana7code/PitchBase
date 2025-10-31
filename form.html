@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PitchBase - Submit Your Project</title>
+  <link rel="stylesheet" href="form.css" />
+</head>
+<body>
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2 class="logo">PitchBase</h2>
+      <nav class="menu">
+        <a href="#">Dashboard</a>
+        <a href="#">My Team</a>
+        <a href="#">Schedule</a>
+        <a href="#" class="active">Submissions</a>
+      </nav>
+      <button class="submit-btn">Submit Project</button>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <section class="container">
+        <h1>Submit Your Project</h1>
+        <p>Complete the steps below to submit your project before the deadline.</p>
+
+        <div class="progress-bar">
+          <div class="progress"></div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-box">
+            <h2>1. Project Details</h2>
+            <label>Project Name</label>
+            <input type="text" placeholder="Enter a catchy name for your project" />
+
+            <label>Team Name</label>
+            <input type="text" value="The Code Crusaders" />
+
+            <label>One-line Pitch / Tagline</label>
+            <input type="text" placeholder="A short, memorable tagline for your project" />
+
+            <label>Detailed Project Description</label>
+            <textarea placeholder="Describe what your project does, the problem it solves, and how you built it."></textarea>
+          </div>
+
+          <div class="form-box">
+            <h2>2. Technical & Links</h2>
+            <label>GitHub Repository URL</label>
+            <input type="text" placeholder="https://github.com/your-team/your-repo" />
+
+            <label>Video Demo URL (YouTube, Vimeo, etc.)</label>
+            <input type="text" placeholder="https://youtube.com/watch?v=your-video" />
+
+            <label>Technologies Used</label>
+            <div class="tech-tags">
+              <span>React</span>
+              <span>Node.js</span>
+              <span>Tailwind CSS</span>
+            </div>
+          </div>
+
+          <div class="submission-box">
+            <h3>Submission Actions</h3>
+            <button class="submit-project">Submit Project</button>
+            <button class="save-draft">Save as Draft</button>
+            <p class="deadline-text">
+              Deadline: October 26, 2024 @ 11:59 PM PST
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="form.js"></script>
+</body>
+</html>
