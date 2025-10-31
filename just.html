@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Innovation Hack Dashboard</title>
+  <link rel="stylesheet" href="just.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Left Sidebar -->
+    <aside class="sidebar">
+      <h2 class="logo">PitchBase</h2>
+      <div class="menu">
+        <button class="active">Teams</button>
+        <button>Rules</button>
+        <button>Prizes</button>
+        <button>Judges</button>
+        <button>Schedule</button>
+      </div>
+
+      <div class="countdown">
+        <p class="label">Submissions Close In</p>
+        <p class="timer" id="timer">01:18:30:55</p>
+      </div>
+
+      <div class="timeline">
+        <p>Team Formation <span>Day 1</span></p>
+        <p>Hacking Started <span>Day 1</span></p>
+        <p>Submissions Open <span>Day 3</span></p>
+        <p>Judging <span>Day 3</span></p>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main">
+      <header>
+        <h3>Find a Team</h3>
+        <div class="search">
+          <input type="text" placeholder="Search for teams by name or skill" />
+          <button class="create">Create Team</button>
+        </div>
+      </header>
+
+      <div class="cards">
+        <!-- Existing Teams -->
+        <div class="card">
+          <div class="header">
+            <span class="tag">DS</span>
+            <h4>Data Strikers</h4>
+          </div>
+          <p>Predictive stock analysis using ML. Need data scientists and backend devs.</p>
+          <div class="skills"><span>Python</span><span>ML</span><span>Flask</span></div>
+          <button class="join">Request to Join</button>
+        </div>
+
+        <div class="card">
+          <div class="header">
+            <span class="tag purple">UI</span>
+            <h4>UI Unicorns</h4>
+          </div>
+          <p>Designing an accessible social app. Seeking creative UI/UX designers.</p>
+          <div class="skills"><span>Figma</span><span>Frontend</span></div>
+          <button class="join">Request to Join</button>
+        </div>
+
+        <div class="card">
+          <div class="header">
+            <span class="tag blue">CG</span>
+            <h4>Code Gladiators</h4>
+          </div>
+          <p>Blockchain-based voting system. Need a Solidity developer.</p>
+          <div class="skills"><span>Blockchain</span><span>Web3</span></div>
+          <button class="join">Request to Join</button>
+        </div>
+
+        <div class="card">
+          <div class="header">
+            <span class="tag green">AP</span>
+            <h4>API Wizards</h4>
+          </div>
+          <p>Climate data visualization API. Looking for frontend developer for dashboard UI.</p>
+          <div class="skills"><span>React</span><span>Data Viz</span></div>
+          <button class="join">Request to Join</button>
+        </div>
+
+        <!-- Added Teams -->
+        <div class="card">
+          <div class="header">
+            <span class="tag orange">IN</span>
+            <h4>InnovateX</h4>
+          </div>
+          <p>Building an AI-based hackathon idea generator. Need backend and AI experts.</p>
+          <div class="skills"><span>OpenAI</span><span>Node.js</span></div>
+          <button class="join">Request to Join</button>
+        </div>
+
+        <div class="card">
+          <div class="header">
+            <span class="tag pink">QT</span>
+            <h4>QuantumTech</h4>
+          </div>
+          <p>Exploring quantum cryptography. Seeking physics & C++ background devs.</p>
+          <div class="skills"><span>Quantum</span><span>C++</span></div>
+          <button class="join">Request to Join</button>
+        </div>
+
+        <div class="card">
+          <div class="header">
+            <span class="tag teal">EV</span>
+            <h4>EcoVision</h4>
+          </div>
+          <p>Developing smart waste segregation system using IoT sensors.</p>
+          <div class="skills"><span>IoT</span><span>Arduino</span><span>ML</span></div>
+          <button class="join">Request to Join</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Right Sidebar -->
+    <aside class="rightbar">
+      <div class="announcements">
+        <h4>Announcements</h4>
+        <p>🎉 Opening ceremony starts in 15 minutes!</p>
+        <p>💬 Mentors available in #help Slack channel.</p>
+        <p>🚀 Submit ideas before midnight.</p>
+      </div>
+
+      <div class="participants">
+        <h4>Participants (32)</h4>
+        <ul>
+          <li><img src="https://i.pravatar.cc/40?img=5" alt=""><span>Sarah Lee</span><small>Frontend, UI/UX</small></li>
+          <li><img src="https://i.pravatar.cc/40?img=8" alt=""><span>Michael Chen</span><small>Backend, DevOps</small></li>
+          <li><img src="https://i.pravatar.cc/40?img=12" alt=""><span>Anya Petrova</span><small>Data Science</small></li>
+          <li><img src="https://i.pravatar.cc/40?img=16" alt=""><span>David Kim</span><small>Product Manager</small></li>
+          <li><img src="https://i.pravatar.cc/40?img=23" alt=""><span>Riya Sharma</span><small>AI Developer</small></li>
+          <li><img src="https://i.pravatar.cc/40?img=34" alt=""><span>Alex Morgan</span><small>Web3 Engineer</small></li>
+          <li><img src="https://i.pravatar.cc/40?img=40" alt=""><span>Priya Das</span><small>UI Designer</small></li>
+          <li><img src="https://i.pravatar.cc/40?img=9" alt=""><span>John Patel</span><small>React Developer</small></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <script src="just.js"></script>
+</body>
+</html>
