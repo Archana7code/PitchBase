@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Judge Dashboard - Assigned Submissions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* CSS for the Judge Dashboard */
+
+        :root {
+            /* Color Palette */
+            --dark-bg: #0F121C;
+            --sidebar-bg: #1B2134;
+            --card-bg: #1B2134;
+            --text-light: #E0E2E7;
+            --text-muted: #9AA0AF;
+            --primary-blue: #4A90E2;
+            --active-bg: #113459;
+            --border-color: #2D3A50;
+            
+            /* Status Tags */
+            --pending-bg: rgba(255, 193, 7, 0.15);
+            --pending-color: #FFC107;
+            --reviewed-bg: rgba(56, 229, 77, 0.15);
+            --reviewed-color: #38E54D;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* --- Main Layout: Sidebar + Content --- */
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* --- Sidebar Navigation --- */
+        .sidebar {
+            width: 230px;
+            background-color: var(--sidebar-bg);
+            padding: 20px 0;
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sidebar-top, .sidebar-bottom {
+            padding: 0 10px;
+        }
+
+        .sidebar-header {
+            padding: 0 10px 20px;
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+        }
+        
+        .sidebar-header i {
+            color: var(--primary-blue);
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        .nav-item a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            margin: 5px 0;
+            border-radius: 8px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .nav-item a i {
+            width: 20px;
+            margin-right: 15px;
+            font-size: 1.1em;
+        }
+
+        .nav-item a:hover {
+            color: var(--text-light);
+            background-color: #232B40;
+        }
+
+        .nav-item a.active {
+            color: var(--text-light);
+            background-color: var(--active-bg);
+        }
+        
+        .nav-item-bottom {
+            margin-top: auto; 
+            padding-top: 15px;
+        }
+        
+        .btn-logout {
+            width: 100%;
+            background-color: #313C52;
+            color: var(--text-light);
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-logout:hover {
+            background-color: #4A566B;
+        }
+
+
+        /* --- Main Content Area --- */
+        .main-content {
+            flex-grow: 1;
+            padding: 0 40px 40px;
+        }
+        
+        /* --- Top Bar --- */
+        .top-bar {
+            padding: 15px 0;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .top-icons i {
+            font-size: 1.2em;
+            color: var(--text-muted);
+            margin-right: 20px;
+            cursor: pointer;
+        }
+        
+        .user-details {
+            text-align: right;
+            margin-right: 15px;
+        }
+        
+        .user-details strong {
+            display: block;
+            font-weight: 600;
+        }
+        
+        .user-details span {
+            color: var(--text-muted);
+            font-size: 0.9em;
+        }
+
+        .user-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: orange; /* Placeholder color */
+            cursor: pointer;
+        }
+
+
+        /* --- Assigned Submissions Section --- */
+        .submission-header {
+            margin-bottom: 30px;
+        }
+        
+        .submission-header h1 {
+            font-size: 2em;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .submission-header p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+        
+        /* Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-filter {
+            background-color: var(--card-bg);
+            color: var(--text-light);
+            border: 1px solid var(--border-color);
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        
+        .btn-filter.active {
+            background-color: var(--primary-blue);
+            border-color: var(--primary-blue);
+            color: var(--text-light);
+        }
+
+        .btn-filter:hover:not(.active) {
+            background-color: #232B40;
+            border-color: var(--primary-blue);
+        }
+
+        /* --- Submissions Table --- */
+        .submissions-table-container {
+            margin-top: 30px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        
+        .submissions-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .submissions-table th, .submissions-table td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .submissions-table th {
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85em;
+        }
+        
+        .submissions-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Table Data Styling */
+        .project-name {
+            font-weight: 600;
+        }
+        
+        .team-name {
+            color: var(--text-muted);
+        }
+
+        .status-tag {
+            padding: 5px 10px;
+            border-radius: 50px;
+            font-size: 0.85em;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .status-pending {
+            background-color: var(--pending-bg);
+            color: var(--pending-color);
+        }
+
+        .status-reviewed {
+            background-color: var(--reviewed-bg);
+            color: var(--reviewed-color);
+        }
+        
+        /* Action Buttons */
+        .btn-action {
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.2s;
+            display: inline-block;
+        }
+
+        .btn-review {
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+            border: none;
+        }
+
+        .btn-review:hover {
+            background-color: #3C7DCF;
+        }
+
+        .btn-view {
+            background-color: transparent;
+            color: var(--primary-blue);
+            border: 1px solid var(--primary-blue);
+        }
+
+        .btn-view:hover {
+            background-color: rgba(74, 144, 226, 0.1);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <nav class="sidebar">
+            <div class="sidebar-top">
+                <div class="sidebar-header">
+                    <i class="fas fa-microchip"></i> Hackathon
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="active">
+                        <i class="fas fa-th-large"></i> Dashboard
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#">
+                        <i class="fas fa-star"></i> My Reviews
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#">
+                        <i class="fas fa-trophy"></i> Leaderboard
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#">
+                        <i class="fas fa-user"></i> Profile
+                    </a>
+                </div>
+            </div>
+            
+            <div class="sidebar-bottom nav-item-bottom">
+                <div class="nav-item">
+                    <a href="#">
+                        <i class="fas fa-cog"></i> Settings
+                    </a>
+                </div>
+                <button class="btn-logout">
+                    Logout
+                </button>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <div class="top-bar">
+                <div class="user-info">
+                    <i class="fas fa-bell"></i>
+                    <div class="user-details">
+                        <strong>Alex Johnson</strong>
+                        <span>Hackathon Judge</span>
+                    </div>
+                    <div class="user-avatar"></div> </div>
+            </div>
+
+            <div class="submission-header">
+                <h1>Assigned Submissions</h1>
+                <p>Welcome, Alex! Here are the projects ready for your review.</p>
+                
+                <div class="filter-buttons">
+                    <button class="btn-filter active">All</button>
+                    <button class="btn-filter">Pending Review</button>
+                    <button class="btn-filter">Reviewed</button>
+                </div>
+            </div>
+
+            <div class="submissions-table-container">
+                <table class="submissions-table">
+                    <thead>
+                        <tr>
+                            <th>Project Name</th>
+                            <th>Team Name</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="project-name">Project Phoenix</td>
+                            <td class="team-name">The Code Crafters</td>
+                            <td><span class="status-tag status-pending">Pending Review</span></td>
+                            <td><a href="#" class="btn-action btn-review">Review Submission</a></td>
+                        </tr>
+                        <tr>
+                            <td class="project-name">InnovateAI</td>
+                            <td class="team-name">Data Dynamos</td>
+                            <td><span class="status-tag status-pending">Pending Review</span></td>
+                            <td><a href="#" class="btn-action btn-review">Review Submission</a></td>
+                        </tr>
+                        <tr>
+                            <td class="project-name">EcoTracker</td>
+                            <td class="team-name">Green Guardians</td>
+                            <td><span class="status-tag status-reviewed">Reviewed</span></td>
+                            <td><a href="#" class="btn-action btn-view">View Review</a></td>
+                        </tr>
+                        <tr>
+                            <td class="project-name">HealthLink</td>
+                            <td class="team-name">MedCoders</td>
+                            <td><span class="status-tag status-pending">Pending Review</span></td>
+                            <td><a href="#" class="btn-action btn-review">Review Submission</a></td>
+                        </tr>
+                        <tr>
+                            <td class="project-name">FinTech Future</td>
+                            <td class="team-name">AlgoTraders</td>
+                            <td><span class="status-tag status-reviewed">Reviewed</span></td>
+                            <td><a href="#" class="btn-action btn-view">View Review</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+    </div>
+
+</body>
+</html>
