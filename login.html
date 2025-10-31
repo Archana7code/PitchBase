@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hackathon Platform - Sign In</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#135bec",
+              "background-light": "#f6f6f8",
+              "background-dark": "#101622",
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<div class="flex flex-1">
+<div class="flex w-full flex-col lg:flex-row">
+<!-- Left Panel -->
+<div class="relative hidden w-full flex-col items-center justify-center bg-[#111722] p-8 text-white lg:flex lg:w-1/2">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-center bg-no-repeat bg-cover aspect-auto" data-alt="Abstract background with interconnected nodes and lines representing technology and collaboration" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCRShugtTZARJvoJmt_ul4cBv4DVXZyb8F3dtAKjK8Ln4lhhAxArqvbxjGqYySDOaIciGHmVZRT4CrdSHIJWnjBTAGQDAWeZyYNf-Q7HRBOeyUrFL6P2XKSEEEdoX72txOKh5p9gZD4hMEpMARrUQrYcXKb1lBpUs3Gp55OrWRB0wT6RMpLdymXp_-qDrNTIeUqFLVyv6TH3LDzVNWegERd0jAlxRtC7uA0vXkn1CPUkyBj82eVRy30uyI7yA5AZ7OmTsD5knmPiC8"); opacity: 0.2;'></div>
+</div>
+<div class="relative z-10 flex flex-col items-start gap-6 max-w-md">
+<h1 class="text-white tracking-light text-5xl font-bold leading-tight text-left">Build the Future, Together.</h1>
+<p class="text-[#92a4c9] text-lg font-normal leading-normal">Join the next wave of innovation and collaborate with the brightest minds in the industry.</p>
+</div>
+</div>
+<!-- Right Panel -->
+<div class="flex w-full flex-col items-center justify-center bg-background-light dark:bg-background-dark p-6 sm:p-8 lg:w-1/2">
+<div class="flex w-full max-w-md flex-col gap-8 py-8">
+<!-- Logo and Header -->
+<div class="flex flex-col items-start gap-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-4xl">hub</span>
+<p class="text-2xl font-bold text-gray-900 dark:text-white">PitchBase</p>
+</div>
+<div class="flex min-w-72 flex-col gap-1">
+<p class="text-gray-900 dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">Create Your Account</p>
+<p class="text-gray-500 dark:text-[#92a4c9] text-base font-normal leading-normal">Join the next wave of innovation.</p>
+</div>
+</div>
+<!-- Form -->
+<div class="flex w-full flex-col gap-6">
+<!-- Segmented Buttons -->
+<div class="flex">
+<div class="flex h-12 flex-1 items-center justify-center rounded-lg bg-gray-200 dark:bg-[#232f48] p-1">
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-md px-2 text-gray-500 dark:text-[#92a4c9] has-[:checked]:bg-white dark:has-[:checked]:bg-[#111722] has-[:checked]:shadow-sm has-[:checked]:text-gray-900 dark:has-[:checked]:text-white text-sm font-medium leading-normal transition-colors">
+<span class="truncate">Sign In</span>
+<input class="invisible w-0" name="auth-toggle" type="radio" value="Sign In"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-md px-2 text-gray-500 dark:text-[#92a4c9] has-[:checked]:bg-white dark:has-[:checked]:bg-[#111722] has-[:checked]:shadow-sm has-[:checked]:text-gray-900 dark:has-[:checked]:text-white text-sm font-medium leading-normal transition-colors">
+<span class="truncate">Register</span>
+<input checked="" class="invisible w-0" name="auth-toggle" type="radio" value="Register"/>
+</label>
+</div>
+</div>
+<!-- Input Fields -->
+<div class="flex flex-col gap-4">
+<label class="flex flex-col flex-1">
+<p class="text-gray-900 dark:text-white text-base font-medium leading-normal pb-2">Full Name</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-gray-900 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary border border-gray-300 dark:border-[#324467] bg-white dark:bg-[#192233] focus:border-primary dark:focus:border-primary h-14 placeholder:text-gray-400 dark:placeholder:text-[#92a4c9] p-[15px] text-base font-normal leading-normal" placeholder="Enter your full name" value=""/>
+</label>
+<label class="flex flex-col flex-1">
+<p class="text-gray-900 dark:text-white text-base font-medium leading-normal pb-2">Email</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-gray-900 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary border border-gray-300 dark:border-[#324467] bg-white dark:bg-[#192233] focus:border-primary dark:focus:border-primary h-14 placeholder:text-gray-400 dark:placeholder:text-[#92a4c9] p-[15px] text-base font-normal leading-normal" placeholder="Enter your email" type="email" value=""/>
+</label>
+<label class="flex flex-col flex-1">
+<p class="text-gray-900 dark:text-white text-base font-medium leading-normal pb-2">Password</p>
+<div class="relative">
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-gray-900 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary border border-gray-300 dark:border-[#324467] bg-white dark:bg-[#192233] focus:border-primary dark:focus:border-primary h-14 placeholder:text-gray-400 dark:placeholder:text-[#92a4c9] p-[15px] pr-12 text-base font-normal leading-normal" placeholder="Enter your password" type="password" value=""/>
+<button class="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-400 dark:text-[#92a4c9]">
+<span class="material-symbols-outlined">visibility_off</span>
+</button>
+</div>
+</label>
+</div>
+<!-- Role Selector -->
+<div class="flex flex-col gap-3">
+<p class="text-gray-900 dark:text-white text-base font-medium leading-normal">Select your role</p>
+<div class="grid grid-cols-1 gap-3 sm:grid-cols-3">
+<label class="group flex cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-gray-300 dark:border-[#324467] p-4 text-center has-[:checked]:border-primary has-[:checked]:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-3xl text-gray-500 dark:text-[#92a4c9] group-has-[:checked]:text-primary">shield_person</span>
+<span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-has-[:checked]:text-primary">Admin</span>
+<input class="invisible absolute h-0 w-0" name="role" type="radio" value="admin"/>
+</label>
+<label class="group flex cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-gray-300 dark:border-[#324467] p-4 text-center has-[:checked]:border-primary has-[:checked]:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-3xl text-gray-500 dark:text-[#92a4c9] group-has-[:checked]:text-primary">code</span>
+<span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-has-[:checked]:text-primary">Participant</span>
+<input checked="" class="invisible absolute h-0 w-0" name="role" type="radio" value="participant"/>
+</label>
+<label class="group flex cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-gray-300 dark:border-[#324467] p-4 text-center has-[:checked]:border-primary has-[:checked]:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-3xl text-gray-500 dark:text-[#92a4c9] group-has-[:checked]:text-primary">gavel</span>
+<span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-has-[:checked]:text-primary">Judge</span>
+<input class="invisible absolute h-0 w-0" name="role" type="radio" value="judge"/>
+</label>
+</div>
+</div>
+<!-- CTA Button -->
+<button class="flex h-14 w-full items-center justify-center rounded-lg bg-primary px-4 py-2 text-base font-bold text-white shadow-sm transition-colors hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Create Account</button>
+<div class="relative flex items-center">
+<div class="flex-grow border-t border-gray-300 dark:border-[#324467]"></div>
+<span class="mx-4 flex-shrink text-sm text-gray-500 dark:text-[#92a4c9]">OR</span>
+<div class="flex-grow border-t border-gray-300 dark:border-[#324467]"></div>
+</div>
+<!-- Social Sign-In -->
+<button class="flex h-14 w-full items-center justify-center gap-3 rounded-lg border border-gray-300 dark:border-[#324467] bg-white dark:bg-[#192233] px-4 py-2 text-base font-medium text-gray-900 dark:text-white shadow-sm transition-colors hover:bg-gray-100 dark:hover:bg-[#232f48]">
+<svg class="h-6 w-6" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.578 12.235c0-.818-.073-1.604-.213-2.36H12v4.455h5.928a5.106 5.106 0 0 1-2.222 3.393v2.895h3.712c2.172-2.001 3.42-4.954 3.42-8.383Z" fill="#4285F4"></path><path d="M12 23c3.245 0 5.956-1.077 7.94-2.916l-3.712-2.895c-1.077.727-2.454 1.159-4.228 1.159-3.255 0-6.004-2.2-6.987-5.16H1.19v2.986C3.14 20.24 7.218 23 12 23Z" fill="#34A853"></path><path d="M5.013 13.34c-.182-.545-.282-1.127-.282-1.73s.1-1.185.282-1.73V7.02H1.19C.426 8.527 0 10.2 0 12s.426 3.473 1.19 4.98l3.823-2.986Z" fill="#FBBC05"></path><path d="M12 4.654c1.756 0 3.34.609 4.582 1.791l3.29-3.29C17.952 1.29 15.245 0 12 0 7.218 0 3.14 2.76 1.19 6.66l3.823 2.986C5.996 6.854 8.745 4.654 12 4.654Z" fill="#EA4335"></path></svg>
+                                    Sign up with Google
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

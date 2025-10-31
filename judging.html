@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Judging | HackConnect</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #0d1117;
+      color: #fff;
+      display: flex;
+      height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 240px;
+      background-color: #161b22;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
+    }
+
+    .profile {
+      text-align: center;
+    }
+
+    .profile img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    .profile h3 {
+      font-size: 1rem;
+    }
+
+    .profile p {
+      color: #9ba3af;
+      font-size: 0.85rem;
+    }
+
+    .menu {
+      margin-top: 30px;
+    }
+
+    .menu a {
+      display: block;
+      color: #9ba3af;
+      padding: 10px;
+      border-radius: 6px;
+      text-decoration: none;
+      margin-bottom: 5px;
+      transition: 0.3s;
+    }
+
+    .menu a:hover, .menu a.active {
+      background-color: #2563eb;
+      color: #fff;
+    }
+
+    .bottom {
+      text-align: center;
+    }
+
+    .logout {
+      background-color: #2563eb;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    /* Main content */
+    .main {
+      flex: 1;
+      padding: 30px;
+      background-color: #0d1117;
+      overflow-y: auto;
+    }
+
+    .main h1 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .search-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .search-bar input, .search-bar select {
+      background-color: #161b22;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 10px;
+      outline: none;
+    }
+
+    .content {
+      display: flex;
+      gap: 30px;
+    }
+
+    .project-list {
+      width: 35%;
+      background-color: #161b22;
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .project {
+      padding: 15px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      background-color: #0d1117;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .project:hover, .project.active {
+      background-color: #1e293b;
+      border-left: 3px solid #2563eb;
+    }
+
+    .project small {
+      color: #9ba3af;
+    }
+
+    .tag {
+      float: right;
+      background-color: #2563eb;
+      color: #fff;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+    }
+
+    .project-details {
+      flex: 1;
+      background-color: #161b22;
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 20px;
+      border-bottom: 1px solid #1f2937;
+      margin-bottom: 15px;
+    }
+
+    .tab {
+      padding-bottom: 8px;
+      cursor: pointer;
+      color: #9ba3af;
+    }
+
+    .tab.active {
+      border-bottom: 2px solid #2563eb;
+      color: #fff;
+    }
+
+    .score {
+      margin: 15px 0;
+    }
+
+    .score label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+    }
+
+    .score input[type="range"] {
+      width: 100%;
+    }
+
+    textarea {
+      width: 100%;
+      background-color: #0d1117;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 10px;
+      height: 80px;
+      resize: none;
+      outline: none;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <div>
+      <div class="profile">
+        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="profile">
+        <h3>Alex Hudson</h3>
+        <p>Judge</p>
+      </div>
+
+      <div class="menu">
+        <a href="#">Dashboard</a>
+        <a href="#" class="active">Judging</a>
+        <a href="#">Profile</a>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <button class="logout">Log Out</button>
+    </div>
+  </div>
+
+  <div class="main">
+    <h1>Project Judging</h1>
+
+    <div class="search-bar">
+      <input type="text" placeholder="Search by project or team">
+      <select><option>Status: All</option></select>
+      <select><option>Sort by: Name</option></select>
+    </div>
+
+    <div class="content">
+      <div class="project-list">
+        <div class="project active">
+          <h4>EcoSort AI <span class="tag">Pending</span></h4>
+          <small>Team Innovate</small>
+        </div>
+        <div class="project">
+          <h4>HealthTrack Pro</h4>
+          <small>Team Phoenix</small>
+        </div>
+        <div class="project">
+          <h4>CodeCollab <span class="tag" style="background-color: #22c55e;">Rated</span></h4>
+          <small>The Dev Squad</small>
+        </div>
+        <div class="project">
+          <h4>MarketMinds</h4>
+          <small>Team Vision</small>
+        </div>
+      </div>
+
+      <div class="project-details">
+        <h2>EcoSort AI</h2>
+        <p style="color:#9ba3af;">by Team Innovate (Jane Doe, John Smith)</p>
+
+        <div class="tabs">
+          <div class="tab active">Project Details</div>
+          <div class="tab">Submission</div>
+        </div>
+
+        <h3>Project Description</h3>
+        <p style="color:#9ba3af; margin-top:8px;">
+          EcoSort AI is a mobile app that uses image recognition to help users correctly sort waste. 
+          It identifies materials and gives instant instructions on how to recycle or dispose of them properly.
+        </p>
+
+        <h3 style="margin-top:20px;">Scoring Criteria</h3>
+        <div class="score">
+          <label>Innovation <span>85</span></label>
+          <input type="range" min="0" max="100" value="85">
+        </div>
+        <div class="score">
+          <label>Technical Execution <span>90</span></label>
+          <input type="range" min="0" max="100" value="90">
+        </div>
+        <div class="score">
+          <label>Impact <span>75</span></label>
+          <input type="range" min="0" max="100" value="75">
+        </div>
+        <div class="score">
+          <label>Presentation Quality <span>80</span></label>
+          <input type="range" min="0" max="100" value="80">
+        </div>
+
+        <h3 style="margin-top:20px;">Private Feedback</h3>
+        <textarea placeholder="Write your feedback here..."></textarea>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
