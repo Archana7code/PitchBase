@@ -1,530 +1,479 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Participant Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        /* CSS for the Dashboard */
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Participant Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --dark-bg: #0f121c;
+      --card-bg: #1b2134;
+      --text-light: #e0e2e7;
+      --text-muted: #9aa0af;
+      --primary-blue: #4a90e2;
+      --accent-green: #38e54d;
+      --accent-yellow: #ffc900;
+      --accent-purple: #9a52ff;
+      --border-color: #2d3a50;
+    }
 
-        :root {
-            /* Color Palette */
-            --dark-bg: #0F121C;
-            --card-bg: #1B2134;
-            --text-light: #E0E2E7;
-            --text-muted: #9AA0AF;
-            --primary-blue: #4A90E2;
-            --accent-green: #38E54D;
-            --accent-yellow: #FFC900;
-            --accent-purple: #9A52FF;
-            --tag-blue: #3E8DFF;
-            --tag-red: #FF5252;
-            --border-color: #2D3A50;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    body {
+      display: flex;
+      min-height: 100vh;
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      font-family: "Inter", sans-serif;
+    }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--text-light);
-            line-height: 1.6;
-        }
+    /* --- Sidebar --- */
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 240px;
+      background: #0a1120;
+      border-right: 1px solid #1c263b;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+    .logo {
+      color: #3b82f6;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 36px;
+    }
 
-        /* --- Header/Navigation --- */
-        .header {
-            background-color: var(--card-bg);
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border-color);
-        }
+    .sidebar nav a {
+      display: block;
+      color: #cbd5e1;
+      text-decoration: none;
+      margin: 12px 0;
+      font-size: 15px;
+      transition: 0.2s ease;
+    }
 
-        .header-left, .header-right {
-            display: flex;
-            align-items: center;
-        }
+    .sidebar nav a:hover,
+    .sidebar nav a.active {
+      color: #fff;
+      font-weight: 600;
+    }
 
-        .logo {
-            color: var(--primary-blue);
-            font-size: 1.5em;
-            font-weight: 800;
-            margin-right: 30px;
-        }
-        
-        .logo-icon {
-            font-size: 20px; /* Placeholder for a stylized icon */
-            margin-right: 5px;
-        }
+    .admin-info {
+      border-top: 1px solid #1c263b;
+      padding-top: 18px;
+      font-size: 13px;
+    }
 
-        .nav a {
-            color: var(--text-muted);
-            text-decoration: none;
-            padding: 10px 15px;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
+    .admin-info .admin-name {
+      color: #cbd5e1;
+      margin-bottom: 4px;
+    }
 
-        .nav a:hover, .nav a.active {
-            color: var(--text-light);
-        }
+    .admin-info .role {
+      color: #94a3b8;
+      margin-bottom: 8px;
+    }
 
-        .btn-create {
-            background-color: var(--primary-blue);
-            color: var(--text-light);
-            border: none;
-            padding: 8px 15px;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-right: 15px;
-        }
+    .logout {
+      color: #ef4444;
+      text-decoration: none;
+      font-size: 13px;
+    }
 
-        .btn-create:hover {
-            background-color: #3C7DCF;
-        }
+    .logout:hover {
+      color: #f87171;
+    }
 
-        .user-avatar {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            background-color: var(--accent-purple); /* Placeholder color */
-            border: 2px solid var(--primary-blue);
-            cursor: pointer;
-        }
+    /* --- Main Content --- */
+    .main-content {
+      margin-left: 260px; /* Space for sidebar */
+      padding: 40px;
+      flex: 1;
+      max-width: calc(100% - 260px);
+    }
 
-        /* --- Main Content Layout --- */
-        .dashboard-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 40px;
-            padding-top: 40px;
-        }
-        
-        @media (max-width: 900px) {
-            .dashboard-content {
-                grid-template-columns: 1fr;
-            }
-            .sidebar {
-                order: -1; /* Move sidebar above the main section on smaller screens */
-            }
-        }
+    .welcome h1 {
+      font-size: 2.2em;
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
 
-        /* --- Welcome Section --- */
-        .welcome h1 {
-            font-size: 2.5em;
-            font-weight: 800;
-            margin-bottom: 5px;
-        }
+    .welcome p {
+      color: var(--text-muted);
+      margin-bottom: 30px;
+    }
 
-        .welcome p {
-            color: var(--text-muted);
-            margin-bottom: 40px;
-        }
-        
-        /* --- Hackathon List/Search --- */
-        .hackathon-list h2 {
-            font-size: 1.6em;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
+    /* --- Search + Hackathons --- */
+    .search-controls {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
 
-        .search-controls {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
-        }
+    .search-controls input,
+    .search-controls select {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-light);
+      padding: 10px 15px;
+      border-radius: 6px;
+      font-size: 0.95em;
+    }
 
-        .search-controls input[type="text"] {
-            flex-grow: 1;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            color: var(--text-light);
-            padding: 10px 15px;
-            border-radius: 6px;
-        }
+    .search-controls input {
+      flex: 1;
+    }
 
-        .search-controls select {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            color: var(--text-light);
-            padding: 10px 15px;
-            border-radius: 6px;
-            appearance: none; /* Remove default select styles */
-            cursor: pointer;
-        }
-        
-        .search-controls .dropdown-icon {
-            /* Placeholder for a dropdown arrow icon */
-            position: relative;
-        }
+    .hackathon-list h2 {
+      font-size: 1.6em;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
 
-        /* --- Hackathon Card --- */
-        .hackathon-card {
-            background-color: var(--card-bg);
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            border: 1px solid var(--border-color);
-            transition: transform 0.2s;
-        }
-        
-        .hackathon-card:hover {
-            transform: translateY(-3px);
-            border-color: var(--primary-blue);
-        }
+    /* --- Hackathon Cards --- */
+    .hackathon-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      padding: 25px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      transition: 0.2s;
+    }
 
-        .hackathon-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
+    .hackathon-card:hover {
+      border-color: var(--primary-blue);
+      transform: translateY(-3px);
+    }
 
-        .hackathon-header h3 {
-            font-size: 1.3em;
-            font-weight: 700;
-        }
+    .hackathon-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
 
-        .status-tag {
-            padding: 4px 10px;
-            border-radius: 50px;
-            font-size: 0.85em;
-            font-weight: 600;
-        }
+    .hackathon-header h3 {
+      font-size: 1.3em;
+      font-weight: 700;
+    }
 
-        .status-ongoing {
-            background-color: rgba(56, 229, 77, 0.2); /* Green with transparency */
-            color: var(--accent-green);
-        }
+    .status-tag {
+      padding: 4px 10px;
+      border-radius: 50px;
+      font-size: 0.85em;
+      font-weight: 600;
+    }
 
-        .status-upcoming {
-            background-color: rgba(255, 201, 0, 0.2); /* Yellow with transparency */
-            color: var(--accent-yellow);
-        }
+    .status-ongoing {
+      background-color: rgba(56, 229, 77, 0.2);
+      color: var(--accent-green);
+    }
 
-        .hackathon-card p {
-            color: var(--text-muted);
-            margin-bottom: 15px;
-            font-size: 0.95em;
-        }
+    .status-upcoming {
+      background-color: rgba(255, 201, 0, 0.2);
+      color: var(--accent-yellow);
+    }
 
-        .tags-list {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
+    .hackathon-card p {
+      color: var(--text-muted);
+      margin-bottom: 15px;
+    }
 
-        .tech-tag {
-            background-color: var(--border-color);
-            color: var(--text-light);
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.75em;
-            font-weight: 500;
-        }
+    .tags-list {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
 
-        /* Specific tag colors (as seen in the image) */
-        .tag-ai { background-color: #313C52; color: #76A9FF; }
-        .tag-python { background-color: #315C52; color: #5CFF76; }
-        .tag-web { background-color: #523131; color: #FF7676; }
-        .tag-blockchain { background-color: #524731; color: #FFD476; }
-        .tag-solidity { background-color: #314452; color: #76C1FF; }
-        .tag-dapps { background-color: #483152; color: #E576FF; }
+    .tech-tag {
+      background-color: var(--border-color);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.8em;
+    }
 
+    .tag-ai {
+      background-color: #313c52;
+      color: #76a9ff;
+    }
+    .tag-python {
+      background-color: #315c52;
+      color: #5cff76;
+    }
+    .tag-web {
+      background-color: #523131;
+      color: #ff7676;
+    }
+    .tag-blockchain {
+      background-color: #524731;
+      color: #ffd476;
+    }
+    .tag-solidity {
+      background-color: #314452;
+      color: #76c1ff;
+    }
+    .tag-dapps {
+      background-color: #483152;
+      color: #e576ff;
+    }
 
-        .hackathon-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .hackathon-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        .details-left span {
-            display: block;
-            color: var(--text-muted);
-            font-size: 0.9em;
-            margin-top: 5px;
-        }
-        
-        .details-left span strong {
-            color: var(--text-light);
-            font-weight: 600;
-        }
+    .details-left span {
+      display: block;
+      color: var(--text-muted);
+      font-size: 0.9em;
+    }
 
-        .details-buttons .btn {
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background-color 0.3s;
-            margin-left: 10px;
-        }
-        
-        .btn-view {
-            background-color: transparent;
-            color: var(--primary-blue);
-            border: 1px solid var(--primary-blue);
-        }
-        
-        .btn-view:hover {
-            background-color: rgba(74, 144, 226, 0.1);
-        }
+    .details-buttons .btn {
+      padding: 8px 15px;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s;
+      margin-left: 10px;
+    }
 
-        .btn-join, .btn-register {
-            background-color: var(--primary-blue);
-            color: var(--text-light);
-            border: none;
-        }
+    .btn-view {
+      background: transparent;
+      color: var(--primary-blue);
+      border: 1px solid var(--primary-blue);
+    }
 
-        .btn-join:hover, .btn-register:hover {
-            background-color: #3C7DCF;
-        }
+    .btn-view:hover {
+      background: rgba(74, 144, 226, 0.1);
+    }
 
-        /* --- Sidebar/Right Column --- */
-        .sidebar {
-            padding-top: 20px;
-        }
+    .btn-join,
+    .btn-register {
+      background: var(--primary-blue);
+      color: white;
+      border: none;
+    }
 
-        .sidebar h2 {
-            font-size: 1.2em;
-            font-weight: 700;
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .sidebar h2 a {
-            color: var(--primary-blue);
-            text-decoration: none;
-            font-size: 0.9em;
-            font-weight: 500;
-        }
+    .btn-join:hover,
+    .btn-register:hover {
+      background: #3c7dcf;
+    }
 
-        /* --- Teams/Submissions Cards --- */
-        .widget-card {
-            background-color: var(--card-bg);
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            border: 1px solid var(--border-color);
-        }
-        
-        /* My Teams */
-        .team-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .team-info {
-            line-height: 1.4;
-        }
+    /* --- Right Sidebar Widgets --- */
+    .widgets {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
 
-        .team-info strong {
-            font-weight: 600;
-            display: block;
-        }
+    .widget-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 20px;
+    }
 
-        .team-info span {
-            color: var(--text-muted);
-            font-size: 0.9em;
-        }
+    .widget-card h2 {
+      font-size: 1.2em;
+      font-weight: 700;
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        .team-avatars img {
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            margin-left: -5px;
-            border: 2px solid var(--card-bg);
-        }
+    .widget-card h2 a {
+      color: var(--primary-blue);
+      text-decoration: none;
+      font-size: 0.9em;
+    }
 
-        /* My Submissions */
-        .submission-item {
-            margin-bottom: 15px;
-        }
-        
-        .submission-item:last-child {
-            margin-bottom: 0;
-        }
+    .team-item,
+    .submission-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
 
-        .submission-item strong {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 2px;
-        }
+    .team-info strong {
+      display: block;
+      font-weight: 600;
+    }
 
-        .submission-item span {
-            color: var(--text-muted);
-            font-size: 0.85em;
-        }
+    .team-info span {
+      color: var(--text-muted);
+      font-size: 0.9em;
+    }
 
-        .submission-tag {
-            float: right;
-            padding: 4px 10px;
-            border-radius: 50px;
-            font-size: 0.75em;
-            font-weight: 600;
-            margin-top: 5px;
-        }
-        
-        .tag-judging {
-            background-color: rgba(74, 144, 226, 0.2);
-            color: var(--primary-blue);
-        }
+    .team-avatars img {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      margin-left: -5px;
+      border: 2px solid var(--card-bg);
+    }
 
-        .tag-winner {
-            background-color: rgba(154, 82, 255, 0.2);
-            color: var(--accent-purple);
-        }
+    .submission-tag {
+      background: rgba(74, 144, 226, 0.2);
+      color: var(--primary-blue);
+      padding: 4px 10px;
+      border-radius: 50px;
+      font-size: 0.75em;
+      margin-left: 10px;
+    }
 
-    </style>
+    .tag-winner {
+      background: rgba(154, 82, 255, 0.2);
+      color: var(--accent-purple);
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+      .main-content {
+        margin: 0;
+        padding: 20px;
+        max-width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-
-    <header class="header">
-        <div class="header-left">
-            <div class="logo">
-                <span class="logo-icon">💡</span> PitchBase
-            </div>
-            <nav class="nav">
-                <a href="#">Dashboard</a>
-                <a href="#">Hackathons</a>
-                <a href="#">Profile</a>
-            </nav>
-        </div>
-        <div class="header-right">
-            <button class="btn-create">Create Hackathon</button>
-            <div class="user-avatar"></div> </div>
-    </header>
-
-    <div class="container">
-        <div class="welcome">
-            <h1>Welcome, Alex!</h1>
-            <p>Discover hackathons, manage your teams, and track your submissions.</p>
-        </div>
-
-        <div class="dashboard-content">
-            <section class="main-content">
-                <div class="hackathon-list">
-                    <h2>Available Hackathons</h2>
-
-                    <div class="search-controls">
-                        <input type="text" placeholder="🔎 Search by name or tag...">
-                        <select>
-                            <option>Status: All</option>
-                            <option>Ongoing</option>
-                            <option>Upcoming</option>
-                        </select>
-                        <select>
-                            <option>Theme</option>
-                            <option>AI</option>
-                            <option>Web3</option>
-                        </select>
-                        <select>
-                            <option>Technology</option>
-                            <option>Python</option>
-                            <option>Solidity</option>
-                        </select>
-                    </div>
-
-                    <div class="hackathon-card">
-                        <div class="hackathon-header">
-                            <h3>AI for Good Challenge</h3>
-                            <span class="status-tag status-ongoing">Ongoing</span>
-                        </div>
-                        <p>Build an innovative AI solution to tackle pressing global issues. Open to all skill levels.</p>
-                        <div class="tags-list">
-                            <span class="tech-tag tag-ai">AI/ML</span>
-                            <span class="tech-tag tag-python">Python</span>
-                            <span class="tech-tag tag-web">Web App</span>
-                        </div>
-                        <div class="hackathon-footer">
-                            <div class="details-left">
-                                <span>🗓️ Ends in **12 days**</span>
-                                <span>💰 **$20,000** Prize Pool</span>
-                            </div>
-                            <div class="details-buttons">
-                                <a href="#" class="btn btn-view">View Details</a>
-                                <a href="#" class="btn btn-join">Join Now</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="hackathon-card">
-                        <div class="hackathon-header">
-                            <h3>Web3 Future Build</h3>
-                            <span class="status-tag status-upcoming">Upcoming</span>
-                        </div>
-                        <p>A 48-hour coding sprint to build the next generation of decentralized applications.</p>
-                        <div class="tags-list">
-                            <span class="tech-tag tag-blockchain">Blockchain</span>
-                            <span class="tech-tag tag-solidity">Solidity</span>
-                            <span class="tech-tag tag-dapps">dApps</span>
-                        </div>
-                        <div class="hackathon-footer">
-                            <div class="details-left">
-                                <span>🗓️ Starts **Oct 28th**</span>
-                                <span>💰 **$50,000** in Prizes</span>
-                            </div>
-                            <div class="details-buttons">
-                                <a href="#" class="btn btn-view">View Details</a>
-                                <a href="#" class="btn btn-register">Register</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-            </section>
-
-            <aside class="sidebar">
-                <div class="widget-card">
-                    <h2>My Teams <a href="#">+ Create</a></h2>
-                    <div class="team-item">
-                        <div class="team-info">
-                            <strong>AI Avengers</strong>
-                            <span>For: AI for Good Challenge</span>
-                        </div>
-                        <div class="team-avatars">
-                            <img src="" alt="Member 1" title="Member 1">
-                            <img src="" alt="Member 2" title="Member 2">
-                            <img src="" alt="Member 3" title="Member 3">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="widget-card">
-                    <h2>My Submissions</h2>
-                    <div class="submission-item">
-                        <span class="submission-tag tag-judging">Judging</span>
-                        <strong>EcoScan AI</strong>
-                        <span>For: GreenTech Innovate 2023</span>
-                    </div>
-                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 10px 0;">
-                    <div class="submission-item">
-                        <span class="submission-tag tag-winner">Winner</span>
-                        <strong>HealthTrack</strong>
-                        <span>For: Healthack 2023</span>
-                    </div>
-                </div>
-
-            </aside>
-        </div>
+  <aside class="sidebar">
+    <div>
+      <h2 class="logo">PitchBase</h2>
+      <nav>
+        <a href="index.html">Dashboard</a>
+        <a href="just.html">Teams</a>
+        <a href="form.html">Submit Project</a>
+        <a href="judging.html">Judges</a>
+        <a href="partidb.html">Hackthons</a>
+        <a href="admindb.html">Admin dashboard</a>
+        <a href="judgedb.html">submissions</a>
+        <a href="result.html">Result</a>
+      </nav>
     </div>
 
+    <div class="admin-info">
+      <p class="admin-name">Admin Ashna</p>
+      <p class="role">Administrator</p>
+      <a href="#" class="logout">Logout</a>
+    </div>
+  </aside>
+
+  <!-- Main Dashboard -->
+  <div class="main-content">
+    <div class="welcome">
+      <h1>Welcome, Alex!</h1>
+      <p>Discover hackathons, manage your teams, and track your submissions.</p>
+    </div>
+
+    <section class="hackathon-list">
+      <h2>Available Hackathons</h2>
+      <div class="search-controls">
+        <input type="text" placeholder="🔎 Search hackathons..." />
+        <select><option>Status: All</option><option>Ongoing</option><option>Upcoming</option></select>
+        <select><option>Theme</option><option>AI</option><option>Web3</option></select>
+      </div>
+
+      <div class="hackathon-card">
+        <div class="hackathon-header">
+          <h3>AI for Good Challenge</h3>
+          <span class="status-tag status-ongoing">Ongoing</span>
+        </div>
+        <p>Build an AI project solving global challenges. Open to all skill levels.</p>
+        <div class="tags-list">
+          <span class="tech-tag tag-ai">AI/ML</span>
+          <span class="tech-tag tag-python">Python</span>
+          <span class="tech-tag tag-web">Web App</span>
+        </div>
+        <div class="hackathon-footer">
+          <div class="details-left">
+            <span>🗓️ Ends in 12 days</span>
+            <span>💰 $20,000 Prize Pool</span>
+          </div>
+          <div class="details-buttons">
+            <a href="#" class="btn btn-view">View</a>
+            <a href="#" class="btn btn-join">Join</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hackathon-card">
+        <div class="hackathon-header">
+          <h3>Web3 Future Build</h3>
+          <span class="status-tag status-upcoming">Upcoming</span>
+        </div>
+        <p>A 48-hour sprint to build the next-gen decentralized app.</p>
+        <div class="tags-list">
+          <span class="tech-tag tag-blockchain">Blockchain</span>
+          <span class="tech-tag tag-solidity">Solidity</span>
+          <span class="tech-tag tag-dapps">dApps</span>
+        </div>
+        <div class="hackathon-footer">
+          <div class="details-left">
+            <span>🗓️ Starts Oct 28</span>
+            <span>💰 $50,000 Prizes</span>
+          </div>
+          <div class="details-buttons">
+            <a href="#" class="btn btn-view">View</a>
+            <a href="#" class="btn btn-register">Register</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right-side Widgets -->
+    <div class="widgets">
+      <div class="widget-card">
+        <h2>My Teams <a href="#">+ Create</a></h2>
+        <div class="team-item">
+          <div class="team-info">
+            <strong>AI Avengers</strong>
+            <span>For: AI for Good Challenge</span>
+          </div>
+          <div class="team-avatars">
+            <img src="https://www.w3schools.com/howto/img_avatar.png" />
+            <img src="https://www.w3schools.com/howto/img_avatar2.png" />
+          </div>
+        </div>
+      </div>
+
+      <div class="widget-card">
+        <h2>My Submissions</h2>
+        <div class="submission-item">
+          <div>
+            <strong>EcoScan AI</strong>
+            <span>GreenTech Innovate 2023</span>
+          </div>
+          <span class="submission-tag">Judging</span>
+        </div>
+        <div class="submission-item">
+          <div>
+            <strong>HealthTrack</strong>
+            <span>Healthack 2023</span>
+          </div>
+          <span class="submission-tag tag-winner">Winner</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

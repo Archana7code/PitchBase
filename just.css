@@ -249,3 +249,41 @@ body {
     grid-template-columns: 1fr;
   }
 }
+.sidebar {
+  width: 240px;
+  background: #0a1120;
+  border-right: 1px solid #1c263b;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.logo {
+  color: #3b82f6; /* blue */
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 36px;
+}
+
+.sidebar nav a {
+  display: block;
+  color: #cbd5e1;
+  text-decoration: none;
+  margin: 10px 0;
+  font-size: 14px;
+  transition: color 0.18s ease;
+}
+
+.sidebar nav a:hover { color: #ffffff; }
+
+.admin-info {
+  border-top: 1px solid #1c263b;
+  padding-top: 18px;
+  font-size: 13px;
+}
+
+.admin-info .admin-name { color: #cbd5e1; margin-bottom: 4px; }
+.admin-info .role { color: #94a3b8; margin-bottom: 8px; }
+.logout { color: #ef4444; text-decoration: none; font-size: 13px; }
+.logout:hover { color: #f87171; }
