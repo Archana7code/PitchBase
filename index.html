@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Dashboard | Hacka-Platform</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div>
+      <h2 class="logo">PitchBase</h2>
+      <nav>
+        <a href="#">Dashboard</a>
+        <a href="#">Hackathons</a>
+        <a href="#">Users</a>
+        <a href="#">Judges</a>
+        <a href="#">Analytics</a>
+        <a href="#">Settings</a>
+      </nav>
+    </div>
+
+    <div class="admin-info">
+      <p class="admin-name">Admin Name</p>
+      <p class="role">Administrator</p>
+      <a href="#" class="logout">Logout</a>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <div class="header">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" placeholder="Search hackathons, users..." aria-label="Search" />
+      </div>
+
+      <div class="header-right">
+        <button class="bell-btn" title="Notifications">🔔</button>
+        <button class="create-btn">Create New Hackathon</button>
+      </div>
+    </div>
+
+    <section class="cards">
+      <div class="card">
+        <h3>Total Hackathons</h3>
+        <div class="number">12</div>
+        <div class="growth green">+5.2% this month</div>
+      </div>
+
+      <div class="card">
+        <h3>Active Participants</h3>
+        <div class="number">482</div>
+        <div class="growth green">+12.1% this month</div>
+      </div>
+
+      <div class="card">
+        <h3>Pending Submissions</h3>
+        <div class="number">37</div>
+        <div class="growth red">-3.5% this week</div>
+      </div>
+    </section>
+
+    <section class="table-container">
+      <div class="table-header">
+        <h2>All Hackathons</h2>
+        <select id="status-filter" aria-label="Filter by status">
+          <option value="all">Filter by Status</option>
+          <option value="live">Live</option>
+          <option value="upcoming">Upcoming</option>
+          <option value="judging">Judging</option>
+          <option value="completed">Completed</option>
+        </select>
+      </div>
+
+      <table id="hackathon-table" aria-describedby="hackathons">
+        <thead>
+          <tr>
+            <th>Event Name</th>
+            <th>Status</th>
+            <th>Start Date</th>
+            <th style="text-align: right;">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-status="live">
+            <td>Quantum Leap AI Challenge</td>
+            <td><span class="status live">Live</span></td>
+            <td>Oct 15, 2024</td>
+            <td class="actions" style="text-align: right;">
+              <button class="icon edit" title="Edit">✏️</button>
+              <button class="icon delete" title="Delete">🗑️</button>
+            </td>
+          </tr>
+
+          <tr data-status="upcoming">
+            <td>Future of Fintech Hack</td>
+            <td><span class="status upcoming">Upcoming</span></td>
+            <td>Nov 01, 2024</td>
+            <td class="actions" style="text-align: right;">
+              <button class="icon edit" title="Edit">✏️</button>
+              <button class="icon delete" title="Delete">🗑️</button>
+            </td>
+          </tr>
+
+          <tr data-status="judging">
+            <td>Eco-Innovate Challenge</td>
+            <td><span class="status judging">Judging</span></td>
+            <td>Sep 28, 2024</td>
+            <td class="actions" style="text-align: right;">
+              <button class="icon edit" title="Edit">✏️</button>
+              <button class="icon delete" title="Delete">🗑️</button>
+            </td>
+          </tr>
+
+          <tr data-status="completed">
+            <td>CyberSecure Summit</td>
+            <td><span class="status completed">Completed</span></td>
+            <td>Aug 12, 2024</td>
+            <td class="actions" style="text-align: right;">
+              <button class="icon edit" title="Edit">✏️</button>
+              <button class="icon delete" title="Delete">🗑️</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
