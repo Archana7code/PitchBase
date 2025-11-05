@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PitchBase - Launch Your Next Big Opportunity</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind Config -->
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#135bec",
+              "background-light": "#f6f6f8",
+              "background-dark": "#101622",
+            },
+            fontFamily: {
+              display: ["Lexend", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+      html, body {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+
+  <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white">
+    <!-- Navbar -->
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md shadow-sm">
+      <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-3">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-3xl">rocket_launch</span>
+          <h1 class="text-xl font-bold">PitchBase</h1>
+        </div>
+        <nav class="hidden md:flex gap-6 text-sm">
+          <a href="#about" class="hover:text-primary">About</a>
+          <a href="#features" class="hover:text-primary">Features</a>
+          <a href="#join" class="hover:text-primary">Join</a>
+        </nav>
+        <div class="flex gap-3">
+          <button class="px-4 py-1 text-sm font-semibold border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition">Login</button>
+          <button class="px-4 py-1 text-sm font-semibold bg-primary text-white rounded-lg hover:bg-blue-700 transition">Sign Up</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto px-6 py-10 gap-6">
+      <div class="md:w-1/2 flex flex-col gap-4">
+        <h2 class="text-3xl md:text-4xl font-black leading-tight">Your Next Big Opportunity Awaits at <span class="text-primary">PitchBase</span></h2>
+        <p class="text-slate-600 dark:text-slate-400 text-sm md:text-base">
+          Discover internships, jobs, hackathons, and competitions to boost your career — all in one platform.
+        </p>
+        <div class="flex gap-4 mt-2">
+          <a href="#" class="bg-primary text-white px-5 py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 transition">Explore Now</a>
+          <a href="#about" class="border border-primary text-primary px-5 py-2 rounded-lg text-sm font-semibold hover:bg-primary hover:text-white transition">Learn More</a>
+        </div>
+      </div>
+
+      <div class="md:w-1/2">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDld1ccXODRMw_pcGm_QW3UMUzypATK8h6ZES9igrq_1AluDFpXe4Kpcf4H_NuA5DnarYqiCzw7W4DRfyoUMNsPEXRbF8jkN6oQbH1tOP7CUTW1vOnfjU7s7_Q6L095yoxDfvq8mTHPYy-g1V5NM14n9LkHyXJd262hyt151deGQ4HjFY2lm3yvCC-gJYLlKSJ3OKmCqRwepoAFBYZbdaNMWTpJRwC2U7KVRwxC67yXqsBlnxKeUe1BpQLUxWJrlCJ4qBltGhjC85kr"
+          alt="Hero Image"
+          class="rounded-xl shadow-lg max-h-[400px] object-cover w-full">
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-background-light dark:bg-[#0e1521] py-10">
+      <div class="max-w-6xl mx-auto text-center px-6">
+        <h3 class="text-2xl font-bold mb-4">About PitchBase</h3>
+        <p class="text-slate-600 dark:text-slate-400 max-w-3xl mx-auto text-sm md:text-base">
+          PitchBase connects students, startups, and companies to opportunities that matter. Whether you're looking to launch your career or find top talent, we make it simple and impactful.
+        </p>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-10 bg-white dark:bg-background-dark">
+      <div class="max-w-7xl mx-auto px-6 text-center">
+        <h3 class="text-2xl font-bold mb-8">Why Choose PitchBase?</h3>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="p-6 bg-background-light dark:bg-[#141b29] rounded-xl shadow-md">
+            <span class="material-symbols-outlined text-primary text-4xl mb-2">work</span>
+            <h4 class="font-semibold mb-1">Career Growth</h4>
+            <p class="text-sm text-slate-600 dark:text-slate-400">Find jobs, internships, and opportunities that match your goals.</p>
+          </div>
+
+          <div class="p-6 bg-background-light dark:bg-[#141b29] rounded-xl shadow-md">
+            <span class="material-symbols-outlined text-primary text-4xl mb-2">emoji_events</span>
+            <h4 class="font-semibold mb-1">Competitions</h4>
+            <p class="text-sm text-slate-600 dark:text-slate-400">Participate in hackathons, challenges, and coding contests.</p>
+          </div>
+
+          <div class="p-6 bg-background-light dark:bg-[#141b29] rounded-xl shadow-md">
+            <span class="material-symbols-outlined text-primary text-4xl mb-2">groups</span>
+            <h4 class="font-semibold mb-1">Community</h4>
+            <p class="text-sm text-slate-600 dark:text-slate-400">Join a vibrant network of learners, mentors, and recruiters.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Join Section -->
+    <section id="join" class="py-12 bg-primary text-white text-center">
+      <h3 class="text-2xl font-bold mb-3">Ready to Take the Next Step?</h3>
+      <p class="text-sm md:text-base mb-6">Join PitchBase and start building your dream career today.</p>
+      <a href="#" class="bg-white text-primary px-6 py-3 rounded-lg text-sm font-bold hover:bg-gray-200 transition">Join Now</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-6 bg-background-dark text-center text-slate-400 text-sm">
+      <div class="flex justify-center gap-4 mb-3">
+        <a href="#" class="hover:text-white">LinkedIn</a>
+        <a href="#" class="hover:text-white">Instagram</a>
+        <a href="#" class="hover:text-white">Twitter</a>
+      </div>
+      <p>© 2025 PitchBase, Inc. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
